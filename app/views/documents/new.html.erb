@@ -1,0 +1,33 @@
+<!-- app/views/documents/new.html.erb -->
+<h1>New Document</h1>
+
+<%= form_with(model: @document, url: documents_path, local: true, multipart: true) do |form| %>
+  <% if @document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+      <ul>
+        <% @document.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :custom_field %>
+    <%= form.text_field :custom_field %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.file_field :name %>
+    <%= form.hidden_field :name_cache, value: @document.name_cache %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create Document' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', documents_path %>

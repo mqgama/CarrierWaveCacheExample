@@ -1,0 +1,13 @@
+<h1>Document List</h1>
+
+<% @documents.each do |document| %>
+  <p>
+    <strong>Id:</strong>
+    <%= document.id %>
+    -
+    <strong>Name:</strong>
+    <%= link_to document.name_identifier, document.name.url, target: "_blank" %>
+  </p>
+<% end %>
+
+<%= link_to 'New Document', new_document_path %>
